@@ -10,7 +10,7 @@ class MyTopo( Topo ):
 
     print("Simple topology example.")
     def __init__( self ):
-        "Create custom topo."
+        print("Create custom topo.")
 
         # Initialize topology
         Topo.__init__( self )
