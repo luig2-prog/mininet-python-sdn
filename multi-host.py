@@ -96,20 +96,3 @@ class MyTopo( Topo ):
         CLI(net)
 
 topos = { 'mytopo': ( lambda: MyTopo() ) }
-
-
-# if __name__ == '__main__':
-# # Tell mininet to print useful information
-#     # setLogLevel('info')
-#     # simpleTest()
-#     topo = MyTopo()
-#     net = Mininet(topo=topo,
-#     controller=None,
-#     autoStaticArp=True)
-#     net.addController("c0",
-#     controller=RemoteController,
-#     ip=REMOTE_CONTROLLER_IP,
-#     port=6633)
-#     net.start()
-#     CLI(net)
-#     # net.stop()
