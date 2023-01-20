@@ -55,14 +55,7 @@ class MyTopo( Topo ):
         Topo.__init__( self )
 
         # Add hosts and switches
-        net = Mininet(self,
-        autoStaticArp=True)
-
-        remote = RemoteController('c0', REMOTE_CONTROLLER_IP, 6633)
-
-        net.addController(remote)
-        net.start()
-        CLI(net)
+        
         print('¿Ingrese la cantidad de host a crear?')
         n_hosts = input('')
         print(SEPARATED)
@@ -92,6 +85,14 @@ class MyTopo( Topo ):
             if int(response) == 1:
                 add_links_switch_to_switch(self, actual_switch, n_switch)
 
+            net = Mininet(self,
+            autoStaticArp=True)
+
+            remote = RemoteController('c0', REMOTE_CONTROLLER_IP, 6633)
+
+            net.addController(remote)
+            net.start()
+            CLI(net)
 
 topos = { 'mytopo': ( lambda: MyTopo() ) }
 
