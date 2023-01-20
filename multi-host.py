@@ -1,5 +1,7 @@
 from mininet.topo import Topo
 from mininet.node import RemoteController
+from mininet.cli import CLI
+from mininet.net import Mininet
 
 
 REMOTE_CONTROLLER_IP = "192.168.1.34"
@@ -39,10 +41,26 @@ class MyTopo( Topo ):
         self.addLink( Switch2, Switch1 )
 topos = { 'mytopo': ( lambda: MyTopo() ) }
 
-net = Mininet(topo=topos,
+
+if __name__ == '__main__':
+# Tell mininet to print useful information
+    # setLogLevel('info')
+    # simpleTest()
+    topo = topos
+    net = Mininet(topo=topo,
     controller=None,
     autoStaticArp=True)
-net.addController("c0",
+    net.addController("c0",
     controller=RemoteController,
     ip=REMOTE_CONTROLLER_IP,
     port=6633)
+    net.start()
+    CLI(net)
+    net.stop()
+# net = Mininet(topo=topos,
+#     controller=None,
+#     autoStaticArp=True)
+# net.addController("c0",
+#     controller=RemoteController,
+#     ip=REMOTE_CONTROLLER_IP,
+#     port=6633)
