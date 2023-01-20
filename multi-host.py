@@ -57,7 +57,7 @@ class MyTopo( Topo ):
         # Add hosts and switches
         net = Mininet(self,
         autoStaticArp=True)
-        net.addController(self,"c0",
+        net.addController(topos['mytopo'],"c0",
         controller=RemoteController,
         ip=REMOTE_CONTROLLER_IP,
         port=6633)
