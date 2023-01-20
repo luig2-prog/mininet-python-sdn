@@ -1,4 +1,46 @@
 from mininet.topo import Topo
+
+MESSAGE_0 = 'Digite 0 para no agregar'
+MESSAGE_1 = 'Digite 1 para agregar'
+SEPARATED = '***************************************'
+
+def add_hosts_and_switchs(self, n_hosts, n_switch):
+    for x in range(int(n_hosts)):
+        host = 'h' + str(x + 1)
+        self.addHost(host)
+
+    for s in range(int(n_switch)):
+        swith = 's' + str(s)
+        print(swith)
+        self.addSwitch(swith)
+
+def add_links_to_switch(self, n_hosts, actual_switch):
+    print(SEPARATED)
+    print('Enlacemos los hosts al swith ' + actual_switch)
+    print(SEPARATED)
+    for host_i in range(int(n_hosts)):
+        actual_host = 'h' + str(host_i + 1)
+        print('Desea agregar el enlace del host ' + actual_host + 
+        ' al switch ' + actual_switch + ' = ' + actual_host + '->' + 
+        actual_switch + '?')
+        print(MESSAGE_0)
+        print(MESSAGE_1)
+        swith_question = input('')
+        if int(swith_question) == 1:
+            print(actual_host, actual_switch)
+            self.addLink( actual_host, actual_switch )
+
+def add_links_switch_to_switch(self, actual_switch, n_switch):
+    for swith_i in range(int(n_switch)):
+        temp_switch = 's' + str(swith_i)
+        print('Agregue el enlace del switch ' + temp_switch + ' al switch ' + 
+        actual_switch + ' ' + temp_switch + '->' + actual_switch + '?')
+        print(MESSAGE_0)
+        print(MESSAGE_1)
+        swith_question = input('')
+        if int(swith_question) == 1:
+            self.addLink( temp_switch, actual_switch )
+
 class MyTopo( Topo ):
 
     print("Simple topology example.")
@@ -9,27 +51,35 @@ class MyTopo( Topo ):
         Topo.__init__( self )
 
         # Add hosts and switches
-        # endTest = True
-        # while endTest:
-            
-        Host1 = self.addHost( 'h1' )
-        Host2 = self.addHost( 'h2' )
-        Host3 = self.addHost( 'h3' )
-        Host4 = self.addHost( 'h4' )
-        Host5 = self.addHost( 'h5' )
-        Host6 = self.addHost( 'h6' )
-        Switch0 = self.addSwitch('s0')
-        Switch1 = self.addSwitch('s1')
-        Switch2 = self.addSwitch('s2')
-            # endTest = False
-        # Add links
-        self.addLink( Host1, Switch0 )
-        self.addLink( Host2, Switch0 )
-        self.addLink( Host3, Switch0 )
-        self.addLink( Host4, Switch1 )
 
-        self.addLink( Host5, Switch1 )
-        self.addLink( Host6, Switch1 )
-        self.addLink( Switch0, Switch2 )
-        self.addLink( Switch2, Switch1 )
+        print('¿Ingrese la cantidad de host a crear?')
+        n_hosts = input('')
+        print(SEPARATED)
+        print('¿Ingrese la cantidad de switch a crear?')
+        n_switch = input('')
+        print(SEPARATED)
+
+        add_hosts_and_switchs(self, n_hosts, n_switch)
+
+        for swith in range(int(n_switch)):
+            actual_switch = 's' + str(swith)
+            print('Configuremos el switch ' + actual_switch)
+            print(SEPARATED)
+            print('¿Desea agregar algún host al switch ' + actual_switch + '?')
+            print(MESSAGE_0)
+            print(MESSAGE_1)
+            question_host_n = input('')
+            if question_host_n == 1:
+               add_links_to_switch(self, n_hosts, actual_switch) 
+
+            print(SEPARATED)
+
+            print('Desea agregar algún switch al presente switch (' + actual_switch + ')' )
+            print(MESSAGE_0)
+            print(MESSAGE_1)
+            response = input('')
+            if int(response) == 1:
+                add_links_switch_to_switch(self, actual_switch, n_switch)
+
+
 topos = { 'mytopo': ( lambda: MyTopo() ) }
