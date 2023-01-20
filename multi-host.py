@@ -58,7 +58,7 @@ class MyTopo( Topo ):
         net = Mininet(self,
         autoStaticArp=True)
         net.addController(self,"c0",
-        controller=None,
+        controller=RemoteController,
         ip=REMOTE_CONTROLLER_IP,
         port=6633)
         net.start()
