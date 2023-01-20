@@ -67,3 +67,15 @@ sudo mn --topo linear,3 --mac --controller=remote,ip=192.168.1.34,port=6633 --sw
 ```
 sudo mn --custom ./mininet/custom/multi-hosts.py --topo=mytopo
 ```
+### multihost 2
+
+```
+sudo mn --custom multi-host.py --topo=mytopo --controller=remote,ip=192.168.1.34,port=6633 --switch ovs,protocols=OpenFlow13
+```
+
+
+### 
+```
+sudo su
+tcpdump -i s1-eth1
+```
