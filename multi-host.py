@@ -46,6 +46,7 @@ if __name__ == '__main__':
 # Tell mininet to print useful information
     # setLogLevel('info')
     # simpleTest()
+    print("Controller exec")
     topo = topos
     net = Mininet(topo=topo,
     controller=None,
