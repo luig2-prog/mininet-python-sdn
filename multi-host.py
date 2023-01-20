@@ -56,7 +56,6 @@ class MyTopo( Topo ):
 
         # Add hosts and switches
         net = Mininet(self,
-        controller=None,
         autoStaticArp=True)
         net.addController(self,"c0",
         controller=None,
