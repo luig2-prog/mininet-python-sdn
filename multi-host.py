@@ -1,16 +1,9 @@
 from mininet.topo import Topo
-from mininet.node import RemoteController
-from mininet.cli import CLI
-from mininet.net import Mininet
-
-
-REMOTE_CONTROLLER_IP = "192.168.1.34"
-
 class MyTopo( Topo ):
 
     print("Simple topology example.")
     def __init__( self ):
-        print("Create custom topo.")
+        "Create custom topo."
 
         # Initialize topology
         Topo.__init__( self )
@@ -39,41 +32,4 @@ class MyTopo( Topo ):
         self.addLink( Host6, Switch1 )
         self.addLink( Switch0, Switch2 )
         self.addLink( Switch2, Switch1 )
-        print("Controller exec")
-        topo = topos
-        net = Mininet(topo=topo,
-        controller=None,
-        autoStaticArp=True)
-        net.addController("c0",
-        controller=RemoteController,
-        ip=REMOTE_CONTROLLER_IP,
-        port=6633)
-        net.start()
-        CLI(net)
-        net.stop()
 topos = { 'mytopo': ( lambda: MyTopo() ) }
-
-
-# if __name__ == '__main__':
-# Tell mininet to print useful information
-    # setLogLevel('info')
-    # simpleTest()
-    # print("Controller exec")
-    # topo = topos
-    # net = Mininet(topo=topo,
-    # controller=None,
-    # autoStaticArp=True)
-    # net.addController("c0",
-    # controller=RemoteController,
-    # ip=REMOTE_CONTROLLER_IP,
-    # port=6633)
-    # net.start()
-    # CLI(net)
-    # net.stop()
-# net = Mininet(topo=topos,
-#     controller=None,
-#     autoStaticArp=True)
-# net.addController("c0",
-#     controller=RemoteController,
-#     ip=REMOTE_CONTROLLER_IP,
-#     port=6633)
