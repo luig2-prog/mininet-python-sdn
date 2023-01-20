@@ -59,7 +59,7 @@ class MyTopo( Topo ):
         controller=None,
         autoStaticArp=True)
         net.addController(self,"c0",
-        controller=RemoteController,
+        controller=None,
         ip=REMOTE_CONTROLLER_IP,
         port=6633)
         net.start()
