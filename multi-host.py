@@ -86,11 +86,12 @@ class MyTopo( Topo ):
                 add_links_switch_to_switch(self, actual_switch, n_switch)
 
         net = Mininet(self,
+        controller=None,
         autoStaticArp=True)
-
-        remote = RemoteController('c0', REMOTE_CONTROLLER_IP, 6633)
-
-        net.addController(remote)
+        net.addController("c0",
+        controller=RemoteController,
+        ip=REMOTE_CONTROLLER_IP,
+        port=6633)
         net.start()
         CLI(net)
 
