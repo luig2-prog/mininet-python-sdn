@@ -86,15 +86,15 @@ class MyTopo( Topo ):
                 add_links_switch_to_switch(self, actual_switch, n_switch)
 
 
-topos = { 'mytopo': ( lambda: MyTopo() ) }
+# topos = { 'mytopo': ( lambda: MyTopo() ) }
 
 
 if __name__ == '__main__':
 # Tell mininet to print useful information
     # setLogLevel('info')
     # simpleTest()
-    # topo = SingleLoopTopo()
-    net = Mininet(topo=topos['mytopo'],
+    topo = MyTopo()
+    net = Mininet(topo=topo,
     controller=None,
     autoStaticArp=True)
     net.addController("c0",
@@ -103,4 +103,4 @@ if __name__ == '__main__':
     port=6633)
     net.start()
     CLI(net)
-    net.stop()
+    # net.stop()
