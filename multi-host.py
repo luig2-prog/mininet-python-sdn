@@ -86,7 +86,7 @@ class MyTopo( Topo ):
                 add_links_switch_to_switch(self, actual_switch, n_switch)
 
         net = Mininet(self,
-        controller=RemoteController,
+        controller=None,
         autoStaticArp=True)
         net.addController("c0",
         controller=RemoteController,
