@@ -61,3 +61,9 @@ sudo -E karaf
 ```
 sudo mn --topo linear,3 --mac --controller=remote,ip=192.168.1.34,port=6633 --switch ovs,protocols=OpenFlow13
 ```
+
+### multihost
+
+```
+sudo mn --custom ./mininet/custom/multi-hosts.py --topo=mytopo
+```
