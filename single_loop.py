@@ -5,7 +5,7 @@ from mininet.net import Mininet
 from mininet.util import dumpNodeConnections
 from mininet.log import setLogLevel
 from mininet.node import RemoteController
-REMOTE_CONTROLLER_IP = "127.0.0.1"
+REMOTE_CONTROLLER_IP = "192.168.1.34"
 def simpleTest():
     # Create and test a simple network
     topo = SingleLoopTopo()
@@ -18,9 +18,9 @@ def simpleTest():
         ip=REMOTE_CONTROLLER_IP,
         port=6633)
     net.start()
-    print "Dumping host connections"
+    print("Dumping host connections")
     dumpNodeConnections(net.hosts)
-    print "Testing network connectivity"
+    print("Testing network connectivity")
     net.pingAll()
     net.stop()
 
