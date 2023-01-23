@@ -1,12 +1,24 @@
 ## Creación de topologías por medio de un script en python
 
+### Para mas información visitar http://mininet.org/
 
-### Remover todols las topologías y enlaces
+# Para ejecutar una topología personalizada ejecutar el siguiente comando
+
 ```
-sudo mn -c
+sudo mn --custom multi-hosts.py --topo=mytopo
+```
+### Para ejecutar una topología personalizada y agregar mi controlador remoto de OpenDaylight ejecutar el siguiente comando
+
+En el parámetro `IP_OPENDAYLIGHT` agregar la ip del servidor OpenDayLight
+
+```
+sudo mn --custom multi-host.py --topo=mytopo --controller=remote,ip=IP_OPENDAYLIGHT,port=6633 --switch ovs,protocols=OpenFlow13
 ```
 
-### Ejecutar el archivo `single_topo.py`
+<hr>
+
+## Para ejecutar el script `single_topo.py` utilice el siguiente comando
+
 ```
 sudo python single_topo.py
 ```
@@ -50,32 +62,30 @@ h1 h2 h3 h4
 *** Done
 ```
 
+## Crear una topología líneal y agregar mi controlador OpenDaylight
+```
+sudo mn --topo linear,3 --mac --controller=remote,ip=ipOpenDaylight,port=6633 --switch ovs,protocols=OpenFlow13
+```
+
+### Para instalar y ejecutar OpenDaylight seguir los siguientes pasos
+
+Pasos para la instalacción en el sitio [oficial](https://docs.opendaylight.org/en/stable-sulfur/getting-started-guide/installing_opendaylight.html)
+
 <hr>
 
-### Ejecutar OpenDaylight
+# Extras
+
+### Ejecución ODL
 ```
 sudo -E karaf
 ```
 
-### Crear una topología y ver en ODL
+### Acceder y ver por consola los datos de un nodo 
 ```
-sudo mn --topo linear,3 --mac --controller=remote,ip=192.168.1.34,port=6633 --switch ovs,protocols=OpenFlow13
-```
-
-### multihost
-
-```
-sudo mn --custom ./mininet/custom/multi-hosts.py --topo=mytopo
-```
-### multihost 2
-
-```
-sudo mn --custom multi-host.py --topo=mytopo --controller=remote,ip=192.168.1.34,port=6633 --switch ovs,protocols=OpenFlow13
-```
-
-
-### 
-```
-sudo su
 tcpdump -i s1-eth1
+```
+
+### Remover todas las topologías y enlaces
+```
+sudo mn -c
 ```
